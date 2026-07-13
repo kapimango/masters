@@ -1,0 +1,44 @@
+TERMINAL 1
+xhost +local:root
+
+pierwsza inicjalizacja:
+docker run -it     --name ros2_gpu_vrx     --gpus all     --env="DISPLAY"     --env="NVIDIA_VISIBLE_DEVICES=all"     --env="NVIDIA_DRIVER_CAPABILITIES=all"     --env="__NV_PRIME_RENDER_OFFLOAD=1"     --env="__GLX_VENDOR_LIBRARY_NAME=nvidia"     --env="XDG_RUNTIME_DIR=/tmp"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"     --volume="$HOME/vrx_workspace/src:/vrx_ws/src"     --net=host     --privileged     moj_ros_vrx
+
+docker start -i ros2_gpu_vrx
+
+2. Załaduj system (Baza + zbudowany projekt)
+source /opt/ros/jazzy/setup.bash
+source /vrx_ws/install/setup.bash
+
+3. Ustawienia grafiki i ścieżek (Kopiuj-wklej jako blok)
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:/vrx_ws/install/wamv_description/share:/vrx_ws/install/wamv_gazebo/share
+export GZ_FILE_PATH=$GZ_FILE_PATH:/vrx_ws/install/wamv_description/share:/vrx_ws/install/wamv_gazebo/share
+export GZ_SIM_MODEL_PATH=$GZ_SIM_MODEL_PATH:/vrx_ws/install/wamv_description/share:/vrx_ws/install/wamv_gazebo/share
+export GZ_GUI_RENDER_ENGINE_GUIDE=ogre
+export QT_X11_NO_MITSHM=1
+
+edycja świata:
+cd /vrx_ws
+colcon build --packages-select vrx_gz
+source install/setup.bash
+włączenie symulacji:
+ros2 launch vrx_gz competition.launch.py
+
+
+/vrx_ws/src/vrx/vrx_gz/src/vrx_gz/bridges.py
+
+wejscie do imu:
+source /opt/ros/jazzy/setup.bash
+source /vrx_ws/install/setup.bash
+
+ros2 topic echo /wamv/sensors/imu/imu/da
+
+TERMINAL 2
+docker exec -it ros2_gpu_vrx bash
+
+ponowne załadowanie systemu i ustawień grafiki i ścieżek
+
+wejscie do odowiedniego folderu (cd vrx/src/)
+
+python3 nazwa.py
+
