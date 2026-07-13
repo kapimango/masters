@@ -3,4 +3,6 @@ skrypty zawiera skrypty potrzebne do przeprowadzenia badań układów steroowani
 wykresy zawiera dane i skrypty potrzebne do ich obróbki <br />
 pod linkiem : https://drive.google.com/file/d/1h4mn9tAuNSsoWRoUBidZIh8aqb4s7G-R/view?usp=sharing dostępny jest vrx <br />
 po stworzeniu folderu vrx_workspace w katalogu domowym i wrzuceniu folderu vrx i skryptów możliwe jest działanie zgodne z opisem w pracy pisemnej. <br />
-plik wlacz zawiera instrukcje potrzebne do konfiguracji srodowiska przy wlaczeniu.
+plik wlacz zawiera instrukcje potrzebne do konfiguracji srodowiska przy wlaczeniu. <br />
+obraz docker dostępny jest pod linkiem: https://hub.docker.com/r/wojciechniklas/ros-vrx <br />
+komenda do terminala do instalacji: docker pull wojciechniklas/ros-vrx
